@@ -3,6 +3,9 @@ const router = express.Router();
 const data = require("./data.json");
 const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
+const keys = require("../../config/keys");
+const jwt = require('jsonwebtoken');
+const validLoginInput = require("../../validation/login");
 
 router.get("/users", (req, res) => res.json(data.users));
 
@@ -33,6 +36,9 @@ router.post("/register", (req, res) => {
 })
 
 router.post("/login", (req, res) => {
+  const { errors, isValid } = validLoginInput(req.body);
+  if (!isValid) return res.status(400).json(errors);
+
   const username = req.body.username;
   const password = req.body.password;
 
@@ -44,8 +50,22 @@ router.post("/login", (req, res) => {
 
       bcrypt.compare(password, user.password)
         .then(isMatch => {
-          if (isMatch) { res.json({ msg: "Success" }) }
-          else { return res.status(400).json({ password: "Incorrect password!" }) }
+          if (isMatch) {
+            const payload = {
+              id: user.id,
+              username: user.username,
+              real_name: user.real_name
+            }
+
+            jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
+              res.json({
+                success: true,
+                token: "Bearer " + token,
+              });
+            })
+          } else {
+            return res.status(400).json({ password: "Incorrect password!" })
+          }
         })
     })
 
