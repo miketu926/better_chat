@@ -5,10 +5,6 @@ const messages = require("./routes/api/messages");
 const users = require("./routes/api/users");
 const passport = require('passport');
 
-// const User = require('./models/User')
-// const user = new User({ user params })
-// user.save()l
-
 const app = express();
 const db = require('./config/keys').mongoURI;
 
@@ -30,5 +26,5 @@ require('./config/passport')(passport);
 app.use("/api/users", users)
 app.use("/api/chat", messages)
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
