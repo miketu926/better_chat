@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../actions/session_actions';
 
-const SignIn = () => {
+const SignIn = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -10,7 +10,7 @@ const SignIn = () => {
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    login({ username, password })(dispatch);
+    login({ username, password })(dispatch)
   }
 
   return (
@@ -20,7 +20,6 @@ const SignIn = () => {
       <button type="submit">Login</button>
     </form>
   )
-
 }
 
 export default SignIn
