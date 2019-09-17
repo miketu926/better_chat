@@ -1,8 +1,8 @@
-const express = require("express")
-const mongoose = require('mongoose')
-const bodyParser = require('body-parser')
-const messages = require("./routes/api/messages")
-const users = require("./routes/api/users")
+const express = require("express");
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const messages = require("./routes/api/messages");
+const users = require("./routes/api/users");
 
 // const User = require('./models/User')
 // const user = new User({ user params })
