@@ -7,7 +7,7 @@ module.exports = function (data) {
   data.message = validText(data.message) ? data.message : '';
 
   if (Validator.isEmpty(data.message)) {
-    errors.username = "Please enter a message!"
+    errors.message = "Please enter a message!"
   }
 
   return {
