@@ -1,7 +1,12 @@
 const express = require("express")
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const messages = require("./routes/api/messages")
 const users = require("./routes/api/users")
+
+// const User = require('./models/User')
+// const user = new User({ user params })
+// user.save()l
 
 const app = express();
 const db = require('./config/keys').mongoURI;
@@ -11,7 +16,13 @@ mongoose
   .then(() => console.log("Connected to MongoDB successfully"))
   .catch(err => console.log(err));
 
-app.get("/", (req, res) => res.send("Welcome to Better Chat!"));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.get("/", (req, res) => {
+  res.send("Welcome to Better Chat!")
+});
+
 app.use("/api", users)
 app.use("/api", messages)
 
