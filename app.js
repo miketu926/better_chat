@@ -23,8 +23,8 @@ app.get("/", (req, res) => {
   res.send("Welcome to Better Chat!")
 });
 
-app.use("/api", users)
-app.use("/api", messages)
+app.use("/api/users", users)
+app.use("/api/chat", messages)
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Server is running on port ${port}`));
