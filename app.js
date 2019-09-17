@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const messages = require("./routes/api/messages");
 const users = require("./routes/api/users");
+const passport = require('passport');
 
 // const User = require('./models/User')
 // const user = new User({ user params })
@@ -22,6 +23,9 @@ app.use(bodyParser.json());
 app.get("/", (req, res) => {
   res.send("Welcome to Better Chat!")
 });
+
+app.use(passport.initialize());
+require('./config/passport')(passport);
 
 app.use("/api/users", users)
 app.use("/api/chat", messages)

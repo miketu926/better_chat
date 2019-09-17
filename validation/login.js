@@ -2,8 +2,6 @@ const Validator = require('validator');
 const validText = require('./valid-text');
 
 module.exports = function (data) {
-
-  //data = req.body
   let errors = {};
 
   data.username = validText(data.username) ? data.username : '';

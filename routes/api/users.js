@@ -5,6 +5,7 @@ const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
 const keys = require("../../config/keys");
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 const validLoginInput = require("../../validation/login");
 
 router.get("/users", (req, res) => res.json(data.users));
@@ -57,18 +58,21 @@ router.post("/login", (req, res) => {
               real_name: user.real_name
             }
 
-            jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
-              res.json({
-                success: true,
-                token: "Bearer " + token,
+            jwt.sign(
+              payload,
+              keys.secretOrKey,
+              { expiresIn: 3600 },
+              (err, token) => {
+                res.json({
+                  success: true,
+                  token: 'Bearer ' + token
+                });
               });
-            })
           } else {
-            return res.status(400).json({ password: "Incorrect password!" })
+            return res.status(400).json({ password: 'Incorrect password' });
           }
         })
     })
-
 })
 
 module.exports = router;
