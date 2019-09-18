@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const fetchUsers = () => {
-  return axios.get('/api/users/all');
+  return axios.get('/users/all');
 }

@@ -9,5 +9,5 @@ export const setAuthToken = token => {
 };
 
 export const login = (userData) => {
-  return axios.post('./api/users/login', userData)
+  return axios.post('./users/login', userData)
 }
