@@ -25,29 +25,49 @@ const Chat = () => {
     }
   }, []);
 
-  const chatsFromStore = useSelector(({ messages }) => {
+  const allMessages = useSelector(({ messages }) => {
     return messages.all;
   });
 
-  if (chatsFromStore.length === 0) {
+  const allUsers = useSelector(({ users }) => {
+    return users.all;
+  });
+
+  if (allMessages.length === 0 || allUsers.length === 0) {
     return (
       <div>loading...</div>
     )
   }
 
-  const chats = chatsFromStore.map(message => {
-    return <MessageItem
-      key={message._id}
-      message={message.message}
-      user={message.user}
-      date={message.date}
-    />
-  })
+  const getChat = (allUsers, allMessages) => {
+    const usersHashMap = {}
+
+    allUsers.forEach(user => {
+      usersHashMap[user._id] = {
+        username: user.username,
+        real_name: user.real_name
+      }
+    })
+
+    return allMessages.map(message => {
+      let username = usersHashMap[message.user].username;
+      let real_name = usersHashMap[message.user].real_name;
+
+      return <MessageItem
+        key={message._id}
+        message={message.message}
+        username={username}
+        real_name={real_name}
+        date={message.date}
+      />
+    })
+  }
+
+  const chats = getChat(allUsers, allMessages);
 
   return (
     <div>
       <div>
-        THIS IS WHERE ALL THE CHATS SHOW UP. THEN A FORM TO SUBMIT CHAT.
         {chats}
       </div>
       <form onSubmit={e => handleSubmit(e)}>

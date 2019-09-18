@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 
-const MessageItem = ({ message, user }) => {
+const MessageItem = ({ message, username, real_name, date }) => {
+  const [showDate, setShowDate] = useState(false);
 
-  return (
+  return (showDate ?
     <div>
-      {user}
+      {date}
+    </div>
+    :
+    <div>
+      {real_name}
+      {username}
       {message}
     </div>
   )
-
 }
 
 export default MessageItem
