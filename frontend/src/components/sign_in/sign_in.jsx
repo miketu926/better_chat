@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { withRouter } from 'react-router';
 import { login } from '../../actions/session_actions';
 
-const SignIn = (props) => {
+const SignIn = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,12 +15,14 @@ const SignIn = (props) => {
   }
 
   return (
-    <form onSubmit={e => handleSignIn(e)}>
-      <input type="text" placeholder="Enter Username" value={username} onChange={e => setUsername(e.currentTarget.value)} />
-      <input type="text" placeholder="Enter Password" value={password} onChange={e => setPassword(e.currentTarget.value)} />
-      <button type="submit">Login</button>
-    </form>
+    <div>
+      <form onSubmit={e => handleSignIn(e)}>
+        <input type="text" placeholder="Enter Username" value={username} onChange={e => setUsername(e.currentTarget.value)} />
+        <input type="text" placeholder="Enter Password" value={password} onChange={e => setPassword(e.currentTarget.value)} />
+        <button type="submit" onClick={e => handleSignIn(e)}>Login</button>
+      </form>
+    </div>
   )
 }
 
-export default SignIn
+export default withRouter(SignIn);

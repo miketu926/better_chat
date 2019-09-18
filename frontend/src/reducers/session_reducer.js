@@ -1,4 +1,6 @@
 import { RECEIVE_USER_LOGOUT } from '../actions/session_actions';
+import { RECEIVE_USER_SIGNIN } from '../actions/session_actions';
+import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 
 const initialState = {
   isAuthenticated: false,
@@ -11,6 +13,12 @@ export default function (state = initialState, action) {
       return {
         isAuthenticated: false,
         user: undefined
+      };
+    case RECEIVE_CURRENT_USER:
+      return {
+        ...state,
+        isAuthenticated: !!action.currentUser,
+        user: action.currentUser
       };
     default:
       return state;
