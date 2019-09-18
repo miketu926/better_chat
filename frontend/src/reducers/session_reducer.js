@@ -1,5 +1,4 @@
 import { RECEIVE_USER_LOGOUT } from '../actions/session_actions';
-import { RECEIVE_USER_SIGNIN } from '../actions/session_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 
 const initialState = {

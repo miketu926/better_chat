@@ -7,8 +7,16 @@ import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
 
+import { getMessages, clearMessages } from './actions/message_actions'
+import { getUsers, clearUsers } from './actions/user_actions'
+
 document.addEventListener('DOMContentLoaded', () => {
   let store;
+
+  window.getMessages = getMessages;
+  window.getUsers = getUsers;
+  window.clearMessages = clearMessages;
+  window.clearUsers = clearUsers;
 
   if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
@@ -22,6 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     store = configureStore(preloadedState);
+
+    window.store = store;
 
     const currentTime = Date.now() / 1000;
 
