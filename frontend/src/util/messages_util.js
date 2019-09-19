@@ -5,5 +5,5 @@ export const fetchMessages = () => {
 }
 
 export const postMessage = (message) => {
-  return axios.post('/chat/sendMessage', message)
+  return axios.post('/chat/sendMessage', { message })
 }

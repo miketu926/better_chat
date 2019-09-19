@@ -1,7 +1,7 @@
 import './chat_styles2.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMessages, clearMessages } from '../../actions/message_actions';
+import { getMessages, clearMessages, postMessage } from '../../actions/message_actions';
 import { getUsers, clearUsers } from '../../actions/user_actions';
 import { withRouter } from 'react-router';
 import { logout } from '../../actions/session_actions';
@@ -37,8 +37,9 @@ const Chat = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    //handle submission
+    postMessage(message)(dispatch)
+    setMessage("");
+    setLength(140);
   }
 
   const handleTyping = (e) => {

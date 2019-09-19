@@ -25,5 +25,9 @@ export const getMessages = () => dispatch => {
     })
 }
 
-// export const postMessage = (message) => dispatch => {
-//   return APIUtil.postMessage()
+export const postMessage = (message) => dispatch => {
+  return APIUtil.postMessage(message)
+    .then(res => {
+      dispatch(sendMessage(res.data))
+    })
+}
