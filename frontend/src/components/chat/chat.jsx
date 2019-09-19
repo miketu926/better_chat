@@ -9,6 +9,7 @@ import MessageItem from '../message/message_item';
 
 const Chat = () => {
   const [message, setMessage] = useState("");
+  const [length, setLength] = useState(140);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -20,6 +21,10 @@ const Chat = () => {
   useEffect(() => {
     getUsers()(dispatch);
     getMessages()(dispatch);
+
+    if (message.length >= 0) {
+      setLength(140 - message.length);
+    }
 
     return () => {
       dispatch(clearMessages());
@@ -75,13 +80,15 @@ const Chat = () => {
       <form onSubmit={e => handleSubmit(e)}
         className='message-form'
       >
+        <div>{length}</div>
         <input type='text'
           value={message}
           placeholder="what's happening?"
           onChange={e => setMessage(e.currentTarget.value)}
           className='input-box'
-        >
-        </input>
+        />
+        <i onClick={e => handleSubmit(e)}
+          class="material-icons">send</i>
       </form>
 
       <div className='button-placement'>

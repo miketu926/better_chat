@@ -11,20 +11,52 @@
   margin-top: 30px;
   padding: 25px;
   background: #ffffff;
-  border: 1px solid #00c397;
+  border-bottom: 1px solid #00c397;
   width: 635px;
   overflow-y: auto;
 }
 
 .input-box {
-  border: 1px solid #00c397;
-  width: auto;
-  padding: 10px;
+  width: 100%;
+  padding: 15px;
+  padding-left: 30px;
+  border: 0;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.input-box::placeholder {
+  color: rgb(164, 164, 164);
+  letter-spacing: 1px;
+  font-size: 14px;
+  font-weight: 300;
 }
 
 .message-form {
   grid-column: 2/3;
   grid-row: 2/3;
+  position: relative;
+}
+
+.message-form div {
+  position: absolute;
+  color: #bababa;
+  font-weight: 300;
+  font-size: 11px;
+  top: 19px;
+  left: 6px;
+}
+
+.message-form i {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  color: #b1bebe;
+}
+
+.message-form i:hover {
+  color: gray;
+  cursor: pointer;
 }
 
 .button-placement {
