@@ -1,5 +1,5 @@
 import './chat_styles2.css';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMessages, clearMessages } from '../../actions/message_actions';
 import { getUsers, clearUsers } from '../../actions/user_actions';
@@ -10,7 +10,30 @@ import MessageItem from '../message/message_item';
 const Chat = () => {
   const [message, setMessage] = useState("");
   const [length, setLength] = useState(140);
+  const [count, setCount] = useState(0);
+
   const dispatch = useDispatch();
+
+  const chatBox = useRef(null);
+
+  const updateScroll = (chatBox) => {
+    console.log(chatBox.current);
+    if (chatBox.current) {
+      chatBox.current.scrollTop = chatBox.current.scrollHeight
+    }
+  }
+
+  useEffect(() => {
+    getUsers()(dispatch);
+    getMessages()(dispatch);
+
+    updateScroll(chatBox);
+
+    return () => {
+      dispatch(clearMessages());
+      dispatch(clearUsers());
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,19 +41,11 @@ const Chat = () => {
     //handle submission
   }
 
-  useEffect(() => {
-    getUsers()(dispatch);
-    getMessages()(dispatch);
-
-    if (message.length >= 0) {
-      setLength(140 - message.length);
-    }
-
-    return () => {
-      dispatch(clearMessages());
-      dispatch(clearUsers());
-    }
-  }, []);
+  const handleTyping = (e) => {
+    e.preventDefault();
+    setMessage(e.currentTarget.value);
+    setLength(140 - e.currentTarget.value.length)
+  }
 
   const allMessages = useSelector(({ messages }) => {
     return messages.all;
@@ -75,7 +90,7 @@ const Chat = () => {
 
   return (
     <div className='bg'>
-      <div className='chat-box'>
+      <div className='chat-box' id='scroll' ref={chatBox}>
         {chats}
       </div>
       <form onSubmit={e => handleSubmit(e)}
@@ -84,12 +99,13 @@ const Chat = () => {
         <div>{length}</div>
         <input type='text'
           value={message}
+          maxLength='140'
           placeholder="what's happening?"
-          onChange={e => setMessage(e.currentTarget.value)}
+          onChange={e => handleTyping(e)}
           className='input-box'
         />
         <i onClick={e => handleSubmit(e)}
-          class="material-icons">send</i>
+          className="material-icons">send</i>
       </form>
 
       <div className='button-placement'>

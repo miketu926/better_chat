@@ -20,13 +20,15 @@
   width: 100%;
   padding: 15px;
   padding-left: 30px;
+  padding-right: 50px;
   border: 0;
   font-size: 14px;
   letter-spacing: 0.5px;
+  color:#2d1645;
 }
 
 .input-box::placeholder {
-  color: rgb(164, 164, 164);
+  color: #a4a4a4;
   letter-spacing: 1px;
   font-size: 14px;
   font-weight: 300;
@@ -54,7 +56,7 @@
   color: #b1bebe;
 }
 
-.message-form i:hover {
+.message-form i:hover, .message-form i:focus {
   color: gray;
   cursor: pointer;
 }
@@ -80,6 +82,6 @@
   letter-spacing: 2px;
 }
 
-.logout-button:hover {
-  background-color: #12c299;
+.logout-button:hover, .logout-button:focus {
+  background-color: #14b58f;
 }
