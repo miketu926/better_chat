@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router';
 import { login } from '../../actions/session_actions';
+import './styles.css'
 
 const SignIn = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("better");
+  const [password, setPassword] = useState("better");
 
   const dispatch = useDispatch();
 
@@ -15,11 +16,14 @@ const SignIn = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={e => handleSignIn(e)}>
-        <input type="text" placeholder="Enter Username" value={username} onChange={e => setUsername(e.currentTarget.value)} />
-        <input type="text" placeholder="Enter Password" value={password} onChange={e => setPassword(e.currentTarget.value)} />
-        <button type="submit" onClick={e => handleSignIn(e)}>Login</button>
+    <div className='background'>
+      <form onSubmit={e => handleSignIn(e)} className='sign-in-form'>
+        <strong className='form-title'>BETTER CHAT</strong>
+        <div className='center-box'>
+          <button type="submit"
+            onClick={e => handleSignIn(e)}
+            className='login-button'>continue</button>
+        </div>
       </form>
     </div>
   )

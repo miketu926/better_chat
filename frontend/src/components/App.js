@@ -3,7 +3,6 @@ import { Switch, Redirect } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import SignIn from './sign_in/sign_in';
 import Chat from './chat/chat';
-import Loading from './loading/loading';
 
 const App = () => {
   return (
@@ -11,8 +10,8 @@ const App = () => {
       <Switch>
         <AuthRoute exact path="/signin" component={SignIn} />
         <ProtectedRoute exact path="/chat" component={Chat} />
+        <Redirect from="" to="/signin" />
         <Redirect from="/" to="/signin" />
-        <Redirect from="/#/" to="/signin" />
       </Switch>
     </div>
   );

@@ -1,0 +1,47 @@
+.background {
+  padding-top: 40px;
+  background-color: #3b2460;
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+  grid-template-columns: 2fr 1fr 2fr;
+  height: 100vh;
+}
+
+.sign-in-form {
+  grid-column: 2/3;
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  justify-content: center;
+}
+
+.form-title {
+  grid-row: 2/3;
+  justify-self: center;
+  align-self: center;
+  font-size: 30px;
+  letter-spacing: 3px;
+  color: #00c397;
+  margin-bottom: 20px;
+}
+
+.center-box {
+  grid-row: 3/4;
+  display:grid;
+  width: 250px;
+}
+
+.login-button {
+  background-color: #15d1a5;
+  border: none;
+  color: white;
+  padding: 17px;
+  font-size: 20px;
+  margin: 4px 2px;
+  border-radius: 50px;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+.login-button:hover {
+  background-color: #12c299;
+}
