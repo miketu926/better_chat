@@ -62,6 +62,7 @@ const Chat = () => {
 
       return <MessageItem
         key={message._id}
+        userId={message.user}
         message={message.message}
         username={username}
         real_name={real_name}
