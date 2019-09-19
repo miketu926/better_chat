@@ -1,10 +1,10 @@
+import './chat_styles2.css';
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMessages, clearMessages } from '../../actions/message_actions';
 import { getUsers, clearUsers } from '../../actions/user_actions';
 import { withRouter } from 'react-router';
 import { logout } from '../../actions/session_actions';
-
 import MessageItem from '../message/message_item';
 
 const Chat = () => {
@@ -13,6 +13,8 @@ const Chat = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    //handle submission
   }
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const Chat = () => {
 
   if (allMessages.length === 0 || allUsers.length === 0) {
     return (
-      <div>loading...</div>
+      <div className='bg'></div>
     )
   }
 
@@ -66,18 +68,28 @@ const Chat = () => {
   const chats = getChat(allUsers, allMessages);
 
   return (
-    <div>
-      <div>
+    <div className='bg'>
+      <div className='chat-box'>
         {chats}
       </div>
-      <form onSubmit={e => handleSubmit(e)}>
+      <form onSubmit={e => handleSubmit(e)}
+        className='message-form'
+      >
         <input type='text'
           value={message}
-          onChange={e => setMessage(e.currentTarget.value)}>
+          placeholder="what's happening?"
+          onChange={e => setMessage(e.currentTarget.value)}
+          className='input-box'
+        >
         </input>
-        <button type="submit" onClick={e => handleSubmit(e)}>Send Arrow -></button>
       </form>
-      <button onClick={() => logout()(dispatch)}>Logout</button>
+
+      <div className='button-placement'>
+        <button onClick={() => logout()(dispatch)}
+          className='logout-button'>
+          leave chat
+          </button>
+      </div>
     </div>
   )
 }

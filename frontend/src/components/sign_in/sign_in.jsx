@@ -2,18 +2,20 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router';
 import { login } from '../../actions/session_actions';
-import './styles.css'
+import './sign_in_styles.css'
 
 const SignIn = () => {
-  const [username, setUsername] = useState("better");
-  const [password, setPassword] = useState("better");
-
   const dispatch = useDispatch();
 
   const handleSignIn = (e) => {
     e.preventDefault();
-    login({ username, password })(dispatch)
-  }
+    login(
+      {
+        username: "better",
+        password: "better"
+      }
+    )(dispatch);
+  };
 
   return (
     <div className='background'>

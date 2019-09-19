@@ -1,0 +1,53 @@
+.bg {
+  background-color: #3b2460;
+  display: grid;
+  grid-template-rows: 8fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 100vh;
+}
+
+.chat-box {
+  grid-column: 2/3;
+  margin-top: 30px;
+  padding: 25px;
+  background: #ffffff;
+  border: 1px solid #00c397;
+  width: 635px;
+  overflow-y: auto;
+}
+
+.input-box {
+  border: 1px solid #00c397;
+  width: auto;
+  padding: 10px;
+}
+
+.message-form {
+  grid-column: 2/3;
+  grid-row: 2/3;
+}
+
+.button-placement {
+  grid-column: 2/3;
+  grid-row: 3/4;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.logout-button {
+  grid-column: 2/3;
+  background-color: #15d1a5;
+  border: none;
+  color: white;
+  padding: 17px;
+  font-size: 20px;
+  margin: 4px 2px;
+  border-radius: 50px;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+.logout-button:hover {
+  background-color: #12c299;
+}

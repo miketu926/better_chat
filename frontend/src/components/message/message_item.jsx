@@ -9,6 +9,14 @@ const MessageItem = ({ message, username, real_name, date }) => {
     </div>
     :
     <div>
+      <div>test</div>
+      <div>test</div>
+      <div>test</div>
+      <div>test</div>
+      <div>test</div>
+      <div>test</div>
+      <div>test</div>
+      <div>test</div>
       {real_name}
       {username}
       {message}
