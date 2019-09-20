@@ -6,11 +6,11 @@
 }
 
 .parent-message-box-L {
-  margin-right: 100px;
+  justify-content: flex-start;
 }
 
 .parent-message-box-R {
-  margin-left: 100px;
+  justify-content: flex-end;
 }
 
 .message-box-R,
@@ -112,4 +112,38 @@
   height: 12px;
   top: 20px;
   left: 80px;
+}
+
+@media screen and (max-width: 650px ) and (min-width: 0px) { 
+  .parent-message-box-L, 
+  .parent-message-box-R {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+  .user-message-R,
+  .user-message-L,
+  .user-date-L,
+  .user-date-R {
+    width: 100%;
+    max-width: 75vw;
+    overflow-wrap: break-word;
+  }
+
+  .user-date-L,
+  .user-date-R {
+    padding-left: 38px;
+  }
+
+  .user-details, .user-details-time {
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+
+  .calendar {
+    width: 12px;
+    height: 12px;
+    top: 20px;
+    left: 19px;
+  }
 }

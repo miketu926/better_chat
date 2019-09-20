@@ -45,3 +45,29 @@
 .login-button:hover {
   background-color: #12c299;
 }
+
+/* 645 is the size of the chat box */
+
+@media screen and (max-width: 650px ) and (min-width: 0px) { 
+  .sign-in-form {
+    padding-top: 40px;
+  }
+
+  .form-title {
+    margin-bottom: 0px;
+  }
+
+  .center-box {
+    justify-content: center;
+  }
+
+  .login-button {
+    border: none;
+    padding: 0px;
+    font-size: 18px;
+    width: 150px;
+    height: 40px;
+    margin-bottom: 15px;
+  }
+  
+}

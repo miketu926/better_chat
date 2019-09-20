@@ -85,3 +85,23 @@
 .logout-button:hover, .logout-button:focus {
   background-color: #14b58f;
 }
+
+@media screen and (max-width: 650px ) and (min-width: 0px) {
+  .chat-box {
+    margin-top: 0px;
+    padding: 15px;
+    width: 100vw;
+  }
+
+  .button-placement {
+    grid-row: 3/5;
+  }
+
+  .logout-button {
+    padding: 0px;
+    font-size: 16px;
+    letter-spacing: 1px;
+    margin: 0px;
+    margin-top: -3px;
+  }
+}

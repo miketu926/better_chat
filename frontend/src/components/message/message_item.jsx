@@ -12,6 +12,8 @@ const MessageItem = ({ message, userId, username, real_name, date }) => {
   const [avatar, setAvatar] = useState()
 
   useEffect(() => {
+    parseElapsedTime(date);
+
     if (username === 'marymeeker') {
       setAvatar(<img src={mary} className='avatar' />)
     } else if (username === 'ConanOBrien') {
@@ -21,8 +23,6 @@ const MessageItem = ({ message, userId, username, real_name, date }) => {
     } else if (username === 'better') {
       setAvatar(<Better viewBox='-85 -85 350 350' className='avatar better-avatar' />)
     }
-
-    parseElapsedTime(date);
 
   }, [])
 
