@@ -48,20 +48,6 @@
   cursor: pointer;
 }
 
-.user-message-R,
-.user-message-L {
-  width: 420px;
-  border-radius: 5px;
-  padding: 15px;
-  font-size: 14px;
-  letter-spacing: 0.5px;
-  line-height: 20px;
-
-  transition-property: background-color;
-  transition-timing-function: ease-in-out;
-  transition-duration: 0.2s;
-}
-
 .user-message-L {
   color: #564569;
   border: 1px solid #f6f6f6;
@@ -74,6 +60,17 @@
   background-color: #00c794;
 }
 
+.user-message-R,
+.user-message-L {
+  width: 420px;
+  border-radius: 5px;
+  padding: 15px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  line-height: 20px;
+  transition: background-color ease-in-out 0.2s;
+}
+
 .user-date-L,
 .user-date-R {
   width: 420px;
@@ -83,13 +80,10 @@
   letter-spacing: 0.5px;
   line-height: 20px;
   text-align: center;
-  transition-property: background-color;
-  transition-timing-function: ease-in-out;
-  transition-duration: 0.2s;
-  
   color: #c0bac7;
   border: 1px solid #2d1645;
   background-color: #2d1645;
+  transition: background-color ease-in-out 0.2s;
 }
 
 .user-details, .user-details-time {
@@ -106,4 +100,16 @@
 
 .better-avatar {
   background: #2d1645;
+}
+
+.date-main {
+  position: relative;
+}
+
+.calendar {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  top: 20px;
+  left: 80px;
 }

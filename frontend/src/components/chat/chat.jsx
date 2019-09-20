@@ -10,24 +10,21 @@ import MessageItem from '../message/message_item';
 const Chat = () => {
   const [message, setMessage] = useState("");
   const [length, setLength] = useState(140);
-  const [count, setCount] = useState(0);
 
   const dispatch = useDispatch();
-
   const chatBox = useRef(null);
 
   const updateScroll = (chatBox) => {
-    console.log(chatBox.current);
     if (chatBox.current) {
-      chatBox.current.scrollTop = chatBox.current.scrollHeight
+      chatBox.current.scrollIntoView({ behavior: 'smooth' })
     }
   }
 
   useEffect(() => {
     getUsers()(dispatch);
-    getMessages()(dispatch);
-
-    updateScroll(chatBox);
+    getMessages()(dispatch).then(res => {
+      updateScroll(chatBox);
+    })
 
     return () => {
       dispatch(clearMessages());
@@ -37,7 +34,9 @@ const Chat = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postMessage(message)(dispatch)
+    postMessage(message)(dispatch).then(res => {
+      updateScroll(chatBox)
+    })
     setMessage("");
     setLength(140);
   }
@@ -91,8 +90,9 @@ const Chat = () => {
 
   return (
     <div className='bg'>
-      <div className='chat-box' id='scroll' ref={chatBox}>
+      <div className='chat-box' id='scroll'>
         {chats}
+        <div ref={chatBox}></div>
       </div>
       <form onSubmit={e => handleSubmit(e)}
         className='message-form'

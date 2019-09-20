@@ -1,14 +1,16 @@
 const express = require("express");
 const router = express.Router();
-const data = require("./data.json");
 const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
 const keys = require("../../config/keys");
 const jwt = require('jsonwebtoken');
-const passport = require('passport');
 const validLoginInput = require("../../validation/login");
 
-router.get("/users", (req, res) => res.json(data.users));
+router.get("/all", (req, res) => {
+  User.find()
+    .then(users => res.json(users))
+    .catch(err => res.status(404).json({ error: "No users found" }))
+});
 
 router.post("/register", (req, res) => {
   User.findOne({ username: req.body.username })

@@ -20,7 +20,7 @@ const SignIn = () => {
   return (
     <div className='background'>
       <form onSubmit={e => handleSignIn(e)} className='sign-in-form'>
-        <strong className='form-title'>BETTER CHAT</strong>
+        <strong className='form-title'>WELCOME!</strong>
         <div className='center-box'>
           <button type="submit"
             onClick={e => handleSignIn(e)}

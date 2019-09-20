@@ -1,11 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const data = require("./data.json");
 const passport = require('passport');
 const validateMessage = require('../../validation/post')
 const Post = require('../../models/Post');
 
-router.get("/messages", (req, res) => res.json(data.posts));
+router.get("/messages", (req, res) => {
+  Post.find()
+    .sort({ date: 1 })
+    .then(messages => res.json(messages))
+    .catch(err => res.status(404).json({ error: 'No messages found' }))
+});
 
 router.post("/sendMessage",
   passport.authenticate('jwt', { session: false }),
@@ -21,7 +25,7 @@ router.post("/sendMessage",
       message: req.body.message,
     })
 
-    newMessage.save().then(message => res.json(message))
+    newMessage.save().then(message => res.send(message))
   }
 )
 
