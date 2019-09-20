@@ -21,6 +21,9 @@ const MessageItem = ({ message, userId, username, real_name, date }) => {
     } else if (username === 'better') {
       setAvatar(<Better viewBox='-85 -85 350 350' className='avatar better-avatar' />)
     }
+
+    parseElapsedTime(date);
+
   }, [])
 
   const currentUser = useSelector(({ session }) => {
@@ -41,12 +44,30 @@ const MessageItem = ({ message, userId, username, real_name, date }) => {
   }
 
   const parseElapsedTime = (d) => {
-    const split = d.split("T")[0].split("-");
-    const [year, month, day] = split;
+    const splitYMD = d.split("T")[0].split("-");
+    const splitHMS = d.split("T")[1].split(".")[0].split(":");
+    const [year, month, day] = splitYMD;
+    const [hour, min, sec] = splitHMS;
 
-    let rightNow = new Date();
+    const n = new Date();
+    const [getYear, getMonth, getDay] = [n.getFullYear(), n.getMonth(), n.getDate()]
+    const [getHour, getMin, getSec] = [n.getHours(), n.getMinutes(), n.getSeconds()]
 
-
+    if (getYear - year > 0) {
+      return getYear - year === 1 ? `${getYear - year} year ago` : `${getYear - year} years ago`;
+    } else if (getMonth - month > 0) {
+      return getMonth - month === 1 ? `${getMonth - month} month ago` : `${getMonth - month} months ago`;
+    } else if (getDay - day > 0) {
+      return getDay - day === 1 ? `${getDay - day} day ago` : `${getDay - day} days ago`;
+    } else if (getHour - hour > 0) {
+      return getHour - hour === 1 ? `${getHour - hour} hour ago` : `${getHour - hour} hours ago`;
+    } else if (getMin - min > 0) {
+      return getMin - min === 1 ? `${getMin - min} min ago` : `${getMin - min} mins ago`;
+    } else if (getSec - sec > 0) {
+      return getSec - sec === 1 ? `${getSec - sec} sec ago` : `${getSec - sec} secs ago`;
+    } else {
+      return `now`
+    }
   }
 
   const isCurrentUser = userId === currentUser;
@@ -55,7 +76,7 @@ const MessageItem = ({ message, userId, username, real_name, date }) => {
     <div className='parent-message-box-R'>
       <div className='message-box-R'>
         <div className='message-details-R'>
-          <div className='user-details-time'>time ago</div>
+          <div className='user-details-time'>{parseElapsedTime(date)}</div>
         </div>
         {
           showDate ?
@@ -83,7 +104,7 @@ const MessageItem = ({ message, userId, username, real_name, date }) => {
       <div className='message-box-L'>
         <div className='message-details-L'>
           <div className='user-details'>{real_name + ` - @` + username}</div>
-          <div className='user-details-time'>time ago</div>
+          <div className='user-details-time'>{parseElapsedTime(date)}</div>
         </div>
         {
           showDate ?
