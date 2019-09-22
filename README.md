@@ -32,13 +32,11 @@
   * HTML/CSS3
 
 ## Main Chat
+desktop version
 ![MainChat](frontend/src/images/main_chat.png "Main Chat")
 
-desktop version
-
-![MobileChat](frontend/src/images/mobile_main.png "Mobile Chat")
-
 mobile version
+![MobileChat](frontend/src/images/mobile_main.png "Mobile Chat")
 
 ## Code Snippets
 
