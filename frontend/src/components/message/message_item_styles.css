@@ -68,7 +68,8 @@
   font-size: 14px;
   letter-spacing: 0.5px;
   line-height: 20px;
-  transition: background-color ease-in-out 0.2s;
+  overflow-wrap: break-word;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .user-date-L,
@@ -83,7 +84,7 @@
   color: #c0bac7;
   border: 1px solid #2d1645;
   background-color: #2d1645;
-  transition: background-color ease-in-out 0.2s;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .user-details, .user-details-time {
@@ -127,7 +128,6 @@
   .user-date-R {
     width: 100%;
     max-width: 75vw;
-    overflow-wrap: break-word;
   }
 
   .user-date-L,

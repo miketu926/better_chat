@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { withRouter } from 'react-router';
 import { login } from '../../actions/session_actions';
@@ -33,7 +33,6 @@ const SignIn = () => {
           <button type="submit"
             onClick={e => handleSignIn(e)}
             className='login-button'>continue</button>
-
           <button type="submit"
             onClick={e => handleSignIn(e, false)}
             className='login-button'>Conan</button>
