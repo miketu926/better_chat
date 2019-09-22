@@ -86,7 +86,22 @@
   background-color: #14b58f;
 }
 
+.bg-loading {
+  background: linear-gradient(302deg, #3b1963, #3b2460);
+  background-size: 400% 400%;
+  -webkit-animation: loader 0.8s ease infinite;
+  animation: loader 0.8s ease infinite;
+}
+
 @media screen and (max-width: 650px ) and (min-width: 0px) {
+  .bg {
+    background-color: white;
+  }
+
+  .input-box {
+    border-bottom: 1px solid #00c397;
+  }
+
   .chat-box {
     margin-top: 0px;
     padding: 15px;

@@ -17,7 +17,7 @@ router.post("/sendMessage",
     const { isValid, errors } = validateMessage(req.body);
 
     if (!isValid) {
-      return res.status(400).json(errors);
+      return res.status(404).json({ errors })
     }
 
     const newMessage = new Post({

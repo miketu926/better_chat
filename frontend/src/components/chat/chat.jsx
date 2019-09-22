@@ -67,7 +67,7 @@ const Chat = () => {
 
   if (allMessages.length === 0 || allUsers.length === 0) {
     return (
-      <div className='bg'></div>
+      <div className='bg bg-loading'></div>
     )
   }
 
