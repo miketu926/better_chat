@@ -4,6 +4,7 @@ export const RECEIVE_MESSAGES = "RECEIVE_MESSAGES";
 export const CLEAR_MESSAGES = "CLEAR_MESSAGES";
 export const SEND_MESSAGE = "SEND_MESSAGE";
 export const RECEIVE_ERRORS = "RECEIVE_ERRORS";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 const receiveMessages = (messages) => ({
   type: RECEIVE_MESSAGES,
@@ -18,6 +19,10 @@ const sendMessage = (message) => ({
 const receiveErrors = (errors) => ({
   type: RECEIVE_ERRORS,
   errors
+})
+
+export const clearErrors = () => ({
+  type: CLEAR_ERRORS
 })
 
 export const clearMessages = () => ({

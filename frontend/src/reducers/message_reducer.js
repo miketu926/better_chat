@@ -2,7 +2,8 @@ import {
   RECEIVE_MESSAGES,
   CLEAR_MESSAGES,
   SEND_MESSAGE,
-  RECEIVE_ERRORS
+  RECEIVE_ERRORS,
+  CLEAR_ERRORS
 } from '../actions/message_actions'
 
 export default function (prevState = { all: [], errors: [] }, action) {
@@ -18,6 +19,10 @@ export default function (prevState = { all: [], errors: [] }, action) {
     case RECEIVE_ERRORS:
       newState.all = prevState.all;
       newState.errors = [action.errors.errors];
+      return newState;
+    case CLEAR_ERRORS:
+      newState.all = prevState.all;
+      newState.errors = [];
       return newState;
     case CLEAR_MESSAGES:
       newState.all = [];

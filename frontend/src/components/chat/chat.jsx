@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getMessages, clearMessages, postMessage } from '../../actions/message_actions';
+import {
+  getMessages,
+  clearMessages,
+  postMessage,
+  clearErrors
+} from '../../actions/message_actions';
 import { getUsers, clearUsers } from '../../actions/user_actions';
 import { withRouter } from 'react-router';
 import { logout } from '../../actions/session_actions';
@@ -56,7 +61,7 @@ const Chat = () => {
     return users.all;
   });
 
-  const messageError = useSelector(({ messages }) => {
+  const errorMessage = useSelector(({ messages }) => {
     return messages.errors;
   })
 
@@ -64,6 +69,16 @@ const Chat = () => {
     return (
       <div className='bg'></div>
     )
+  }
+
+  if (errorMessage.length > 0) {
+    Swal.fire({
+      type: 'error',
+      title: 'Chat',
+      text: 'Please enter a message!'
+    });
+
+    dispatch(clearErrors());
   }
 
   const getChat = (allUsers, allMessages) => {
@@ -95,36 +110,33 @@ const Chat = () => {
   const chats = getChat(allUsers, allMessages);
 
   return (
-    messageError.length === 0 ?
-      <div className='bg'>
-        <div className='chat-box' id='scroll'>
-          {chats}
-          <div ref={chatBox}></div>
-        </div>
-        <form onSubmit={e => handleSubmit(e)}
-          className='message-form'
-        >
-          <div>{length}</div>
-          <input type='text'
-            value={message}
-            maxLength='140'
-            placeholder="what's happening?"
-            onChange={e => handleTyping(e)}
-            className='input-box'
-          />
-          <i onClick={e => handleSubmit(e)}
-            className="material-icons">send</i>
-        </form>
-
-        <div className='button-placement'>
-          <button onClick={() => logout()(dispatch)}
-            className='logout-button'>
-            leave chat
-          </button>
-        </div>
+    <div className='bg'>
+      <div className='chat-box' id='scroll'>
+        {chats}
+        <div ref={chatBox}></div>
       </div>
-      :
-      <div>MESSAGE ERROR!</div>
+      <form onSubmit={e => handleSubmit(e)}
+        className='message-form'
+      >
+        <div>{length}</div>
+        <input type='text'
+          value={message}
+          maxLength='140'
+          placeholder="what's happening?"
+          onChange={e => handleTyping(e)}
+          className='input-box'
+        />
+        <i onClick={e => handleSubmit(e)}
+          className="material-icons">send</i>
+      </form>
+
+      <div className='button-placement'>
+        <button onClick={() => logout()(dispatch)}
+          className='logout-button'>
+          leave chat
+          </button>
+      </div>
+    </div>
   )
 }
 
