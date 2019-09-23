@@ -1,30 +1,33 @@
-.parent-message-box-L, 
+.parent-message-box-L,
 .parent-message-box-R {
   display: flex;
   flex-direction: row;
-  margin-bottom: 20px;
-}
-
-.parent-message-box-L {
-  justify-content: flex-start;
 }
 
 .parent-message-box-R {
   justify-content: flex-end;
 }
 
-.message-box-R,
-.message-box-L {
+.message-box-L,
+.message-box-R {
   display: flex;
   flex-direction: column;
+}
+
+.message-box-L {
+  margin-left: 15px;
 }
 
 .message-box-R {
   margin-right: 15px;
 }
 
-.message-box-L {
-  margin-left: 15px;
+.message-details-L,
+.message-details-R,
+.user-details {
+  font-size: 12px;
+  margin-bottom: 3px;
+  color: #564569;
 }
 
 .message-details-L,
@@ -41,56 +44,84 @@
   justify-content: flex-start;
 }
 
-.user-message-R:hover, 
-.user-date-R:hover,
-.user-message-L:hover, 
-.user-date-L:hover {
+.flip-container {
+  perspective: 1000px;
+}
+
+.flip-container:hover .card, 
+.flip-container.hover .card {
+  transform: rotateY(180deg);
   cursor: pointer;
 }
 
-.user-message-L {
-  color: #564569;
-  border: 1px solid #f6f6f6;
-  background-color: #f6f6f6;
+.flip-container,
+.front-L,
+.back {
+  width: 420px;
 }
 
-.user-message-R {
+.card {
+	transition: 0.5s;
+	transform-style: preserve-3d;
+	position: relative;
+}
+
+.front-L, 
+.back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.front-L {
+  color: #564569;
+  border-radius: 5px;
+  background-color: #f6f6f6;
+	z-index: 2;
+}
+
+.front-R {
   color: #c8ebe4;
+  border-radius: 5px;
   border: 1px solid #00c794;
   background-color: #00c794;
 }
 
-.user-message-R,
-.user-message-L {
-  width: 420px;
-  border-radius: 5px;
+.back {
+	transform: rotateY(180deg);
+  align-items: center;
+}
+
+.user-message-L,
+.user-message-R {
   padding: 15px;
   font-size: 14px;
   letter-spacing: 0.5px;
   line-height: 20px;
   overflow-wrap: break-word;
-  transition: background-color 0.2s ease-in-out;
 }
 
 .user-date-L,
 .user-date-R {
-  width: 420px;
   border-radius: 5px;
   padding: 15px;
   font-size: 14px;
   letter-spacing: 0.5px;
   line-height: 20px;
+  justify-content: center;
   text-align: center;
   color: #c0bac7;
   border: 1px solid #2d1645;
   background-color: #2d1645;
-  transition: background-color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
 }
 
-.user-details, .user-details-time {
-  font-size: 12px;
-  margin-bottom: 3px;
-  color: #564569;
+.calendar {
+  width: 13px;
+  height: 13px;
+  margin-right: 10px;
 }
 
 .avatar {
@@ -103,17 +134,6 @@
   background: #2d1645;
 }
 
-.date-main {
-  position: relative;
-}
-
-.calendar {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  top: 20px;
-  left: 80px;
-}
 
 @media screen and (max-width: 650px ) and (min-width: 0px) { 
   .parent-message-box-L, 
@@ -121,22 +141,30 @@
     margin-bottom: 20px;
     width: 100%;
   }
-  
-  .user-message-R,
-  .user-message-L,
-  .user-date-L,
-  .user-date-R {
-    width: 100%;
+
+  .message-box-L,
+  .message-box-R {
     max-width: 75vw;
   }
-
+  
+  .front-L,
+  .front-R,
+  .user-message-L,
+  .user-message-R,
   .user-date-L,
   .user-date-R {
-    padding-left: 38px;
+    font-size: 13px;
   }
 
-  .user-details, .user-details-time {
-    font-size: 11px;
+  .front-L,
+  .front-R,
+  .card,
+  .back {
+    width: 75vw;
+  }
+
+  .user-details {
+    font-size: 12px;
     margin-bottom: 3px;
   }
 

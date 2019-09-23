@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import mary from '../../images/marymeeker.jpg'
 import conan from '../../images/ConanOBrien.jpg'
@@ -9,8 +9,14 @@ import { parseDate, parseElapsedTime } from '../../util/parse'
 import './message_item_styles.css'
 
 const MessageItem = ({ message, userId, username, real_name, date }) => {
-  const [showDate, setShowDate] = useState(false);
   const [avatar, setAvatar] = useState()
+  const currentUser = useSelector(({ session }) => {
+    return session.user.id
+  })
+  const isCurrentUser = userId === currentUser
+  const messageDiv = useRef(null);
+  const dateDiv = useRef(null);
+  const parentDiv = useRef(null);
 
   useEffect(() => {
     parseElapsedTime(date);
@@ -25,62 +31,57 @@ const MessageItem = ({ message, userId, username, real_name, date }) => {
       setAvatar(<Better viewBox='-85 -85 350 350' className='avatar better-avatar' />)
     }
 
-  }, [])
+    if (messageDiv.current) {
+      let height = isCurrentUser ?
+        messageDiv.current.offsetHeight - 40 : messageDiv.current.offsetHeight - 25
+      parentDiv.current.style.marginBottom = `${height}px`
+      dateDiv.current.style.height = `${messageDiv.current.offsetHeight}px`;
+    }
 
-  const currentUser = useSelector(({ session }) => {
-    return session.user.id
-  })
+  }, [messageDiv.current, dateDiv.current])
 
-  const isCurrentUser = userId === currentUser;
-
-  return isCurrentUser ?
-    <div className='parent-message-box-R'>
-      <div className='message-box-R'>
-        <div className='message-details-R'>
-          <div className='user-details-time'>{parseElapsedTime(date)}</div>
-        </div>
-        {
-          showDate ?
-            <div onClick={() => setShowDate(!showDate)} className='date-main'>
-              <div className='user-date-R'>
-                {`active since ` + parseDate(date)}
-              </div>
-              <Calendar className='calendar' />
-            </div>
-            :
-            <div onClick={() => setShowDate(!showDate)}
-              className='user-message-R'>{message}
-            </div>
-        }
-      </div>
-      <div>
-        <div>{avatar}</div>
-      </div>
-    </div>
-    :
-    <div className='parent-message-box-L'>
-      <div>
-        <div>{avatar}</div>
-      </div>
+  return !isCurrentUser ?
+    <div className='parent-message-box-L' ref={parentDiv}>
+      <div>{avatar}</div>
       <div className='message-box-L'>
         <div className='message-details-L'>
           <div className='user-details'>{real_name + ` - @` + username}</div>
-          <div className='user-details-time'>{parseElapsedTime(date)}</div>
+          <div className='user-details'>{parseElapsedTime(date)}</div>
         </div>
-        {
-          showDate ?
-            <div onClick={() => setShowDate(!showDate)} className='date-main'>
-              <div className='user-date-L'>
+        <div className='flip-container'>
+          <div className='card'>
+            <div className='front-L' ref={messageDiv}>
+              <div className='user-message-L'>{message}</div>
+            </div>
+            <div className='back'>
+              <div className='user-date-L' ref={dateDiv}>
+                <Calendar className='calendar' />
                 {`active since ` + parseDate(date)}
               </div>
-              <Calendar className='calendar' />
             </div>
-            :
-            <div onClick={() => setShowDate(!showDate)}
-              className='user-message-L'>{message}
-            </div>
-        }
+          </div>
+        </div>
       </div>
+    </div>
+    :
+    <div className='parent-message-box-R' ref={parentDiv}>
+      <div className='message-box-R'>
+        <div className='user-details'>{parseElapsedTime(date)}</div>
+        <div className='flip-container'>
+          <div className='card' ref={messageDiv}>
+            <div className='front-R'>
+              <div className='user-message-R'>{message}</div>
+            </div>
+            <div className='back'>
+              <div className='user-date-R' ref={dateDiv}>
+                <Calendar className='calendar' />
+                {`active since ` + parseDate(date)}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>{avatar}</div>
     </div>
 }
 

@@ -12,14 +12,13 @@ export const parseDate = (d) => {
 }
 
 export const parseElapsedTime = (d) => {
-  const splitYMD = d.split("T")[0].split("-");
-  const splitHMS = d.split("T")[1].split(".")[0].split(":");
-  const [year, month, day] = splitYMD;
-  const [hour, min, sec] = splitHMS;
+  const date = new Date(d);
+  const [year, month, day] = [date.getFullYear(), date.getMonth(), date.getDate()]
+  const [hour, min, sec] = [date.getHours(), date.getMinutes(), date.getSeconds()]
 
-  const n = new Date();
-  const [getYear, getMonth, getDay] = [n.getFullYear(), n.getMonth(), n.getDate()]
-  const [getHour, getMin, getSec] = [n.getHours(), n.getMinutes(), n.getSeconds()]
+  const now = new Date();
+  const [getYear, getMonth, getDay] = [now.getFullYear(), now.getMonth(), now.getDate()]
+  const [getHour, getMin, getSec] = [now.getHours(), now.getMinutes(), now.getSeconds()]
 
   if (getYear - year > 0) {
     return getYear - year === 1 ? `${getYear - year} year ago` : `${getYear - year} years ago`;

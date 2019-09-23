@@ -28,7 +28,7 @@ const Chat = () => {
 
   useEffect(() => {
     getUsers()(dispatch);
-    getMessages()(dispatch).then(res => {
+    getMessages()(dispatch).then(() => {
       updateScroll(chatBox);
     })
 
@@ -40,7 +40,7 @@ const Chat = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    postMessage(message)(dispatch).then(res => {
+    postMessage(message)(dispatch).then(() => {
       updateScroll(chatBox)
     })
     setMessage("");
