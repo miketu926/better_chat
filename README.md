@@ -1,5 +1,5 @@
 # Chat
-[Chat](https://better-chat.herokuapp.com/ "Chat") (live) is a simple chat app. You can either log in as the main user by clicking continue, or proceed as Conan to see the perspective of the chat update.
+[Chat](https://better-chat.herokuapp.com/#/signin "Chat") (live) is a simple chat app. You can either log in as the main user by clicking continue, or proceed as Conan to see the perspective of the chat update.
 
 ## Table of contents
 * [Features](#features)
@@ -56,7 +56,7 @@ mobile version
   }, []);
 ```
 
-Code snippet of react hooks useEffect and redux hooks useDispatch to dispatch the initial render of chat messages. Once rendered, the chat auto scrolls to the most recent message. The store is cleared of messages and users when exiting the chat. (frontend/src/components/chat.jsx)
+Code snippet of react hooks useEffect and redux hooks useDispatch to dispatch the initial render of chat messages. Once a new message is sent, the chat auto scrolls to the most recent message. The store is cleared of messages and users when exiting the chat. (frontend/src/components/chat.jsx)
 
 ```javascript
   const allMessages = useSelector(({ messages }) => {
@@ -134,14 +134,13 @@ Code snippet of live character count (frontend/src/components/chat.jsx)
   }
 
   export const parseElapsedTime = (d) => {
-    const splitYMD = d.split("T")[0].split("-");
-    const splitHMS = d.split("T")[1].split(".")[0].split(":");
-    const [year, month, day] = splitYMD;
-    const [hour, min, sec] = splitHMS;
+    const date = new Date(d);
+    const [year, month, day] = [date.getFullYear(), date.getMonth(), date.getDate()]
+    const [hour, min, sec] = [date.getHours(), date.getMinutes(), date.getSeconds()]
 
-    const n = new Date();
-    const [getYear, getMonth, getDay] = [n.getFullYear(), n.getMonth(), n.getDate()]
-    const [getHour, getMin, getSec] = [n.getHours(), n.getMinutes(), n.getSeconds()]
+    const now = new Date();
+    const [getYear, getMonth, getDay] = [now.getFullYear(), now.getMonth(), now.getDate()]
+    const [getHour, getMin, getSec] = [now.getHours(), now.getMinutes(), now.getSeconds()]
 
     if (getYear - year > 0) {
       return getYear - year === 1 ? `${getYear - year} year ago` : `${getYear - year} years ago`;
@@ -211,6 +210,10 @@ CSS of responsive design using media queries (frontend/src/components/chat_style
 ![charactercount](frontend/src/images/chat_char_count.gif "Character count")
 
 Live character count
+
+![flip](frontend/src/images/flip.gif "flip")
+
+Each message flips on their back showing the date message was sent
 
 ![error](frontend/src/images/error.gif "error")
 
