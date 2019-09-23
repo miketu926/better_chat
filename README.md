@@ -1,5 +1,5 @@
 # Chat
-[Chat](https://better-chat.herokuapp.com/#/signin "Chat") (live) is a simple chat app. You can either log in as the main user by clicking continue, or proceed as Conan to see the perspective of the chat update.
+[Chat](https://better-chat.herokuapp.com "Chat") (live) is a simple chat app. You can either log in as the main user by clicking continue, or proceed as Conan to see the perspective of the chat update.
 
 ## Table of contents
 * [Features](#features)
