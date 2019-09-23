@@ -41,6 +41,8 @@ mobile version
 ![MobileChat](frontend/src/images/mobile_main.png "Mobile Chat")
 
 ## Code Snippets
+    
+Code snippet of react hooks useEffect and redux hooks useDispatch to dispatch the initial render of chat messages. Once a new message is sent, the chat auto scrolls to the most recent message. The store is cleared of messages and users when exiting the chat. (frontend/src/components/chat.jsx)
 
 ```javascript
   useEffect(() => {
@@ -56,7 +58,7 @@ mobile version
   }, []);
 ```
 
-Code snippet of react hooks useEffect and redux hooks useDispatch to dispatch the initial render of chat messages. Once a new message is sent, the chat auto scrolls to the most recent message. The store is cleared of messages and users when exiting the chat. (frontend/src/components/chat.jsx)
+Code snippet of chat messages using message data from the redux store retrieved using redux hooks useSelector. Then using a hashMap to lookup username and their real name, optimizing the amount of data passed into each message sub-component (frontend/src/components/chat.jsx)
 
 ```javascript
   const allMessages = useSelector(({ messages }) => {
@@ -94,7 +96,7 @@ Code snippet of react hooks useEffect and redux hooks useDispatch to dispatch th
   }
 ```
 
-Code snippet of chat messages using message data from the redux store retrieved using redux hooks useSelector. Then using a hashMap to lookup username and their real name, optimizing the amount of data passed into each message sub-component (frontend/src/components/chat.jsx)
+Code snippet of live character count (frontend/src/components/chat.jsx)
 
 ```javascript
   const [length, setLength] = useState(140);
@@ -116,8 +118,7 @@ Code snippet of chat messages using message data from the redux store retrieved 
     />
   )
 ```
-
-Code snippet of live character count (frontend/src/components/chat.jsx)
+Code snippet of parsing date and parsing elapsed message time for each message subcomponent (frontend/src/util/parse.js)
 
 ```javascript
   export const parseDate = (d) => {
@@ -159,8 +160,7 @@ Code snippet of live character count (frontend/src/components/chat.jsx)
     }
   }
 ```
-
-Code snippet of parsing date and parsing elapsed message time for each message subcomponent (frontend/src/util/parse.js)
+Code snippet of each avatar being handled statically. This can be updated dynamically if the imgs were to come from a DB/cloud and each avatar rendered individually set by setAvatar(); (frontend/src/components/message_item.jsx)
 
 ```javascript
   useEffect(() => {
@@ -179,42 +179,16 @@ Code snippet of parsing date and parsing elapsed message time for each message s
   }, [])
 ```
 
-Code snippet of each avatar being handled statically. This can be updated dynamically if the imgs were to come from a DB/cloud and each avatar rendered individually set by setAvatar(); (frontend/src/components/message_item.jsx)
-
-```css
-@media screen and (max-width: 650px ) and (min-width: 0px) {
-  .chat-box {
-    margin-top: 0px;
-    padding: 15px;
-    width: 100vw;
-  }
-
-  .button-placement {
-    grid-row: 3/5;
-  }
-
-  .logout-button {
-    padding: 0px;
-    font-size: 16px;
-    letter-spacing: 1px;
-    margin: 0px;
-    margin-top: -3px;
-  }
-}
-```
-
-CSS of responsive design using media queries (frontend/src/components/chat_styles2.css)
-
 ## Additional Features
-
-![charactercount](frontend/src/images/chat_char_count.gif "Character count")
 
 Live character count
 
-![flip](frontend/src/images/flip.gif "flip")
+![charactercount](frontend/src/images/chat_char_count.gif "Character count")
 
 Each message flips on their back showing the date message was sent
 
-![error](frontend/src/images/error.gif "error")
+![flip](frontend/src/images/flip.gif "flip")
 
 Error if no message is typed
+
+![error](frontend/src/images/error.gif "error")
