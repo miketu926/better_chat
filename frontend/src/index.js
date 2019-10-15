@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (decodedUser.exp < currentTime) {
       store.dispatch(logout());
-      window.location.href = '/signin';
+      window.location.href = '/';
     }
 
   } else {

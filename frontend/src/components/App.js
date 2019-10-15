@@ -8,10 +8,8 @@ const App = () => {
   return (
     <div>
       <Switch>
-        <AuthRoute exact path="/signin" component={SignIn} />
+        <AuthRoute exact path="/" component={SignIn} />
         <ProtectedRoute exact path="/chat" component={Chat} />
-        <Redirect from="" to="/signin" />
-        <Redirect from="/" to="/signin" />
       </Switch>
     </div>
   );
