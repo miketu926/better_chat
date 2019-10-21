@@ -18,11 +18,11 @@ const Chat = () => {
   const [length, setLength] = useState(140);
 
   const dispatch = useDispatch();
-  const chatBox = useRef(null);
+  const chatBox = useRef();
 
   const updateScroll = (chatBox) => {
     if (chatBox.current) {
-      chatBox.current.scrollIntoView({ behavior: 'smooth' })
+      chatBox.current.scrollIntoView({ behavior: 'smooth', block: 'end' })
     }
   }
 
